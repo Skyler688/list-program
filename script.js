@@ -5,13 +5,15 @@ productArray = [];
 function addProduct() {
   // Assignment 1
   // You need to change the id that this collects to product.
-  let input = document.getElementById("input").value;
+  let input = document.getElementById("product").value;
   // You will need to create a div using javascript,
   // Use this site to help you understand how: https://www.w3schools.com/jsref/met_document_createelement.asp
+  let item = document.createElement("div");
 
   // Once you create create a div,
   // you will need to get the output using the same method you did for the input
   // Except you do not need to include the value at the end.
+  let output = document.getElementById("output");
 
   // CHALLENGE SECTION:
   // If you feel up for a challenge, try and use an if statement if(condition){run this code}
@@ -20,6 +22,10 @@ function addProduct() {
   // If the code you will want to run after checking the condition is to run the alert method.
   // If you do not know the alert method, look it up on google using the w3schools,
   // do not forget to include a return false at the end to not reload your webpage.
+  if (input === "") {
+    alert("Invalid input, please try again.");
+    return false;
+  }
 
   // Assignment 2:
   // You need to put the value of the input into an array to call later.
@@ -31,6 +37,8 @@ function addProduct() {
   // Please look up how to use push on an array here: https://www.w3schools.com/jsref/jsref_push.asp
   // use console.log and pass in the product array to check if you have it setup correctly.
   // console.log(productArray)
+  productArray.push(input); // NOTE: When using the newProduct variable it pushes an object to the array, when a div is created it will say [object Object] insted of the items name.
+  console.log(productArray);
 
   // Assignment 3:
   // Hint: Use a loop(look up the javascript loop on w3schools.) on your product array and set the max length of the loop to the array using
@@ -43,10 +51,17 @@ function addProduct() {
   // This means that you need to get your output variable use dot notation to set style.display = "block"
 
   // set the div.textContent equal to the the array index number [i] and dot notation of the product
+  //  // set the div.textContent equal to the the array index number [i] and dot notation of the product
   // `${productArray[i].your input}`
 
   // finally use the appendChild method from the output variable you had from earlier.
   // output.appendChild(yourdivnamehere)
+  for (let i = 0; i < productArray.length; i++) {
+    document.getElementById("product").value = "";
+    output.style.display = "block";
+    item.textContent = `${productArray[i]}`;
+    output.appendChild(item);
+  }
 
   // this line is to prevent the webpage from reloading. DO NOT MODIFY IT.
   return false;
